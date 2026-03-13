@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" 2>/dev/null || dir \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\")",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm run dev 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm create vite@latest . -- --template react 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm install 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm run build 2>&1 | tail -20)",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && code .)"
+    ]
+  }
+}
