@@ -6,7 +6,13 @@
       "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm create vite@latest . -- --template react 2>&1)",
       "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm install 2>&1)",
       "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm run build 2>&1 | tail -20)",
-      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && code .)"
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && code .)",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm run build 2>&1 | tail -30)",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm install react-router-dom 2>&1 | tail -6)",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm run build 2>&1 | tail -12)",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm run build 2>&1 | head -30)",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm run build 2>&1 | tail -8)",
+      "Bash(cd \"C:\\\\Users\\\\Matheus Mendes\\\\Documents\\\\CFOly\" && npm run build 2>&1)"
     ]
   }
 }

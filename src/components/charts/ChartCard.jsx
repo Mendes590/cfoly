@@ -9,7 +9,7 @@ export function ChartTip({ active, payload, label }) {
       background: th.solidPanel, border: `1px solid ${th.border}`,
       borderRadius: 12, padding: "10px 14px", boxShadow: th.shadow, minWidth: 130,
     }}>
-      <div style={{ color: th.textM, fontSize: 11, fontWeight: 600, marginBottom: 7 }}>{label}</div>
+      <div style={{ color: th.textS, fontSize: 10.5, fontWeight: 600, marginBottom: 8, letterSpacing: "0.02em" }}>{label}</div>
       {payload.map((p, i) => (
         <div key={i} style={{ display: "flex", justifyContent: "space-between", gap: 16, fontSize: 12.5, fontWeight: 600, marginBottom: 3 }}>
           <span style={{ color: th.textS, fontWeight: 500 }}>{p.name}</span>
@@ -29,7 +29,7 @@ export function ChartCard({ title, sub, right, aiKey, children, noPad }) {
   return (
     <div style={{
       background: th.bgCard, border: `1px solid ${th.border}`,
-      borderRadius: 18, padding: noPad ? 0 : "18px 20px 14px",
+      borderRadius: 14, padding: noPad ? 0 : "18px 20px 14px",
       boxShadow: th.shadowS, overflow: "hidden",
     }}>
       <div style={{
@@ -37,8 +37,8 @@ export function ChartCard({ title, sub, right, aiKey, children, noPad }) {
         marginBottom: 14, padding: noPad ? "18px 20px 0" : 0,
       }}>
         <div>
-          <div style={{ fontSize: 13.5, fontWeight: 700, color: th.text }}>{title}</div>
-          {sub && <div style={{ fontSize: 11.5, color: th.textM, marginTop: 2 }}>{sub}</div>}
+          <div style={{ fontSize: 13.5, fontWeight: 700, color: th.text, letterSpacing: "-0.02em" }}>{title}</div>
+          {sub && <div style={{ fontSize: 11.5, color: th.textM, marginTop: 3 }}>{sub}</div>}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
           {right}

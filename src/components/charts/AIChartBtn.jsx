@@ -71,7 +71,7 @@ function UserMessage({ text, th }) {
 }
 
 export function AIChartBtn({ analysisKey }) {
-  const { th, t } = useC();
+  const { th, t, demo, openDemoAI, closeDemoAI, aiPanelKey } = useC();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [initialLoading, setInitialLoading] = useState(false);
@@ -80,15 +80,15 @@ export function AIChartBtn({ analysisKey }) {
   const [pos, setPos] = useState({ top: 0, left: 0, dir: "down" });
   const [followUpCount, setFollowUpCount] = useState(0);
   const btnRef = useRef(null);
-  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
   const inputRef = useRef(null);
   const initialized = useRef(false);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => { scrollToBottom(); }, [messages, aiTyping]);
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages, aiTyping]);
 
   const handleOpen = () => {
     if (open) { setOpen(false); return; }
@@ -142,6 +142,34 @@ export function AIChartBtn({ analysisKey }) {
   }, [open, analysisKey]);
 
   const animName = pos.dir === "down" ? "aiPopupDown" : "aiPopupUp";
+
+  /* ── Demo mode: just a toggle button — the actual AI panel is a screen-level
+     overlay inside DemoScreen (no inline popup, no overflow, no scroll jump) ── */
+  if (demo) {
+    const isActive = aiPanelKey === analysisKey;
+    const toggle = () => isActive ? closeDemoAI?.() : openDemoAI?.(analysisKey);
+    return (
+      <button
+        onClick={toggle}
+        style={{
+          display: "flex", alignItems: "center", gap: 6,
+          padding: "5px 12px", borderRadius: 20,
+          border: `1px solid ${isActive ? th.borderA : th.aiBtnBorder}`,
+          background: isActive ? th.accentBg : th.aiBtnBg,
+          color: isActive ? th.accentL : th.textM,
+          fontSize: 11.5, fontWeight: 600, cursor: "pointer",
+          fontFamily: "inherit", transition: "all 0.15s", whiteSpace: "nowrap",
+        }}
+        onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = th.accentBg; e.currentTarget.style.color = th.accentL; e.currentTarget.style.borderColor = th.borderA; } }}
+        onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = th.aiBtnBg; e.currentTarget.style.color = th.textM; e.currentTarget.style.borderColor = th.aiBtnBorder; } }}
+      >
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        </svg>
+        {t.aiBtn}
+      </button>
+    );
+  }
 
   return (
     <>
@@ -201,7 +229,7 @@ export function AIChartBtn({ analysisKey }) {
             </div>
 
             {/* Messages area */}
-            <div style={{ flex: 1, overflowY: "auto", padding: "14px 14px 8px", display: "flex", flexDirection: "column", gap: 12, scrollbarWidth: "thin", scrollbarColor: `${th.border} transparent` }}>
+            <div ref={messagesContainerRef} style={{ flex: 1, overflowY: "auto", padding: "14px 14px 8px", display: "flex", flexDirection: "column", gap: 12, scrollbarWidth: "thin", scrollbarColor: `${th.border} transparent` }}>
               {initialLoading ? (
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -220,7 +248,6 @@ export function AIChartBtn({ analysisKey }) {
                       : <UserMessage key={m.id} text={m.text} th={th} />
                   )}
                   {aiTyping && <TypingIndicator th={th} />}
-                  <div ref={messagesEndRef} />
                 </>
               )}
             </div>

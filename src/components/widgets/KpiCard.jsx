@@ -8,20 +8,21 @@ export function KpiCard({ label, value, sub, trend, accent, icon, sparkline }) {
   const isPositive = trend >= 0;
   return (
     <Card>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
-        <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", color: th.textM, textTransform: "uppercase" }}>{label}</span>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
+        <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", color: th.textS, textTransform: "uppercase" }}>{label}</span>
         <div style={{
-          width: 32, height: 32, borderRadius: 9,
-          background: accent + "18",
+          width: 30, height: 30, borderRadius: 9,
+          background: accent + "16",
+          border: `1px solid ${accent}28`,
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 15, flexShrink: 0,
+          fontSize: 14, flexShrink: 0,
         }}>{icon}</div>
       </div>
-      <div style={{ fontSize: 28, fontWeight: 800, color: th.text, letterSpacing: "-0.04em", lineHeight: 1, marginBottom: 10 }}>{value}</div>
-      <div style={{ height: 36, marginBottom: 10 }}>
-        <ResponsiveContainer width="100%" height={36}>
-          <LineChart data={mini} margin={{ top: 2, right: 2, left: 2, bottom: 2 }}>
-            <Line type="monotone" dataKey="v" stroke={accent} strokeWidth={2} dot={false} />
+      <div style={{ fontSize: 26, fontWeight: 800, color: th.text, letterSpacing: "-0.04em", lineHeight: 1, marginBottom: 12 }}>{value}</div>
+      <div style={{ height: 34, marginBottom: 12 }}>
+        <ResponsiveContainer width="100%" height={34}>
+          <LineChart data={mini} margin={{ top: 2, right: 0, left: 0, bottom: 2 }}>
+            <Line type="monotone" dataKey="v" stroke={accent} strokeWidth={1.8} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -31,6 +32,7 @@ export function KpiCard({ label, value, sub, trend, accent, icon, sparkline }) {
             fontSize: 10.5, fontWeight: 700, padding: "2px 8px", borderRadius: 20,
             background: isPositive ? th.greenBg : th.redBg,
             color: isPositive ? th.green : th.red,
+            border: `1px solid ${isPositive ? th.greenB : th.redB}`,
           }}>
             {isPositive ? "↑" : "↓"} {Math.abs(trend)}%
           </span>

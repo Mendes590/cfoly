@@ -21,11 +21,14 @@ export function ChatBot({ preload }) {
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [showSugg, setShowSugg] = useState(!preload);
-  const botRef = useRef(null);
+  const msgsRef = useRef(null);
   const resp = CHAT[lang] || CHAT.pt;
 
   useEffect(() => {
-    botRef.current?.scrollIntoView({ behavior: "smooth" });
+    /* Scroll only the messages container — never touches ancestor scrollers */
+    if (msgsRef.current) {
+      msgsRef.current.scrollTop = msgsRef.current.scrollHeight;
+    }
   }, [msgs, typing]);
 
   const send = (text) => {
@@ -57,7 +60,7 @@ export function ChatBot({ preload }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: 440 }}>
-      <div style={{ flex: 1, overflowY: "auto", padding: "14px 16px 8px", display: "flex", flexDirection: "column", gap: 12, scrollbarWidth: "thin" }}>
+      <div ref={msgsRef} style={{ flex: 1, overflowY: "auto", padding: "14px 16px 8px", display: "flex", flexDirection: "column", gap: 12, scrollbarWidth: "thin" }}>
         {msgs.map((m, i) => (
           <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", gap: 9 }}>
             {m.role === "ai" && <AiAvatar />}
@@ -88,7 +91,6 @@ export function ChatBot({ preload }) {
             </div>
           </div>
         )}
-        <div ref={botRef} />
       </div>
 
       {showSugg && (

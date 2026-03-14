@@ -4,16 +4,16 @@ export const Ctx = createContext(null);
 export const useC = () => useContext(Ctx);
 
 export const NAV = [
-  { id: "dashboard", icon: "⊞" },
-  { id: "cashflow", icon: "◈" },
-  { id: "revenue", icon: "↗" },
-  { id: "expenses", icon: "↙" },
-  { id: "customers", icon: "◉" },
-  { id: "insights", icon: "★" },
-  { id: "report", icon: "📄" },
-  { id: "context", icon: "🧠" },
-  { id: "integrations", icon: "🔗" },
-  { id: "settings", icon: "⚙" },
+  { id: "dashboard",    icon: "⊞", path: "/dashboard" },
+  { id: "cashflow",     icon: "◈", path: "/cashflow" },
+  { id: "revenue",      icon: "↗", path: "/revenue" },
+  { id: "expenses",     icon: "↙", path: "/expenses" },
+  { id: "customers",    icon: "◉", path: "/customers" },
+  { id: "insights",     icon: "★", path: "/insights" },
+  { id: "report",       icon: "📄", path: "/report" },
+  { id: "context",      icon: "🧠", path: "/business-context" },
+  { id: "integrations", icon: "🔗", path: "/integrations" },
+  { id: "settings",     icon: "⚙",  path: "/settings" },
 ];
 
 export const fmt = (v) => "$" + (v >= 1000 ? (v / 1000).toFixed(0) + "k" : v);
