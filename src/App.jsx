@@ -12,8 +12,9 @@ import { PageCashFlow } from "./pages/CashFlow.jsx";
 import { PageRevenue } from "./pages/Revenue.jsx";
 import { PageExpenses } from "./pages/Expenses.jsx";
 import { PageCustomers } from "./pages/Customers.jsx";
-import { PageInsights } from "./pages/Insights.jsx";
-import { PageReport } from "./pages/Report.jsx";
+import { PageInsights }  from "./pages/Insights.jsx";
+import { PageValuation } from "./pages/Valuation.jsx";
+import { PageReport }    from "./pages/Report.jsx";
 import { PageContext } from "./pages/BusinessContext.jsx";
 import { PageIntegrations } from "./pages/Integrations.jsx";
 import { PageSettings } from "./pages/Settings.jsx";
@@ -27,6 +28,7 @@ const PATH_TO_PAGE = {
   "/expenses":        "expenses",
   "/customers":       "customers",
   "/insights":        "insights",
+  "/valuation":       "valuation",
   "/report":          "report",
   "/business-context":"context",
   "/integrations":    "integrations",
@@ -208,6 +210,7 @@ function AppShell({ lang, setLang, themeName, setTheme, user, setUser, onLogout 
               <Route path="/expenses"         element={<PageExpenses />} />
               <Route path="/customers"        element={<PageCustomers />} />
               <Route path="/insights"         element={<PageInsights />} />
+              <Route path="/valuation"        element={<PageValuation />} />
               <Route path="/report"           element={<PageReport />} />
               <Route path="/business-context" element={<PageContext />} />
               <Route path="/integrations"     element={<PageIntegrations />} />

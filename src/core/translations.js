@@ -1,7 +1,7 @@
 export const TR = {
   pt: {
     tagline: "CFO com IA",
-    nav: { dashboard: "Painel", cashflow: "Fluxo de Caixa", revenue: "Receita", expenses: "Despesas", customers: "Clientes", insights: "Assistente IA", report: "Relatório", context: "Meu Negócio", integrations: "Integrações", settings: "Configurações" },
+    nav: { dashboard: "Painel", cashflow: "Fluxo de Caixa", revenue: "Receita", expenses: "Despesas", customers: "Clientes", insights: "Assistente IA", valuation: "Valuation", report: "Relatório", context: "Meu Negócio", integrations: "Integrações", settings: "Configurações" },
     period: "Mar 2025", periodFull: "1 Mar – 1 Abr, 2025",
     kpi: { revenue: "Receita", expenses: "Despesas", netMargin: "Margem Líquida", cashRunway: "Runway de Caixa", breakeven: "Ponto de Equilíbrio", ebitda: "EBITDA" },
     vsLast: "vs mês anterior", days: "dias", perMonth: "/ mês", income: "Receita", expenses2: "Despesas",
@@ -50,7 +50,7 @@ export const TR = {
   },
   en: {
     tagline: "AI CFO",
-    nav: { dashboard: "Dashboard", cashflow: "Cash Flow", revenue: "Revenue", expenses: "Expenses", customers: "Customers", insights: "AI Assistant", report: "Report", context: "My Business", integrations: "Integrations", settings: "Settings" },
+    nav: { dashboard: "Dashboard", cashflow: "Cash Flow", revenue: "Revenue", expenses: "Expenses", customers: "Customers", insights: "AI Assistant", valuation: "Valuation", report: "Report", context: "My Business", integrations: "Integrations", settings: "Settings" },
     period: "Mar 2025", periodFull: "Mar 1 – Apr 1, 2025",
     kpi: { revenue: "Revenue", expenses: "Expenses", netMargin: "Net Margin", cashRunway: "Cash Runway", breakeven: "Break-even", ebitda: "EBITDA" },
     vsLast: "vs last month", days: "days", perMonth: "/ month", income: "Revenue", expenses2: "Expenses",
@@ -99,7 +99,7 @@ export const TR = {
   },
   es: {
     tagline: "CFO con IA",
-    nav: { dashboard: "Panel", cashflow: "Flujo de Caja", revenue: "Ingresos", expenses: "Gastos", customers: "Clientes", insights: "Asistente IA", report: "Informe", context: "Mi Negocio", integrations: "Integraciones", settings: "Configuración" },
+    nav: { dashboard: "Panel", cashflow: "Flujo de Caja", revenue: "Ingresos", expenses: "Gastos", customers: "Clientes", insights: "Asistente IA", valuation: "Valuación", report: "Informe", context: "Mi Negocio", integrations: "Integraciones", settings: "Configuración" },
     period: "Mar 2025", periodFull: "1 Mar – 1 Abr, 2025",
     kpi: { revenue: "Ingresos", expenses: "Gastos", netMargin: "Margen Neto", cashRunway: "Runway de Caja", breakeven: "Punto de Equilibrio", ebitda: "EBITDA" },
     vsLast: "vs mes anterior", days: "días", perMonth: "/ mes", income: "Ingresos", expenses2: "Gastos",

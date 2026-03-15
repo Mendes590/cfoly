@@ -21,6 +21,7 @@ import { PageRevenue }          from "./Revenue.jsx";
 import { PageExpenses }         from "./Expenses.jsx";
 import { PageCustomers }        from "./Customers.jsx";
 import { PageInsights }         from "./Insights.jsx";
+import { PageValuation }        from "./Valuation.jsx";
 import { PageReport }           from "./Report.jsx";
 import { PageContext }          from "./BusinessContext.jsx";
 import { PageIntegrations }     from "./Integrations.jsx";
@@ -244,6 +245,7 @@ const PAGES = {
   expenses:     PageExpenses,
   customers:    PageCustomers,
   insights:     PageInsights,
+  valuation:    PageValuation,
   report:       PageReport,
   context:      PageContext,
   integrations: PageIntegrations,
