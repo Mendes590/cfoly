@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+server/node_modules/
+
+# Build output
+dist/
+
+# Environment files
+.env
+server/.env
+
+# SQLite database
+server/prisma/*.db
+server/prisma/*.db-journal
+
+# Prisma generated client (generated on npm install)
+server/node_modules/.prisma/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

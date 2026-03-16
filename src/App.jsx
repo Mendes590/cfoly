@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getMe, logout as apiLogout, hasToken } from "./services/api/auth.js";
 import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
 import { Ctx, NAV } from "./core/context.jsx";
 import { THEMES } from "./core/themes.js";
@@ -250,7 +251,7 @@ function LandingRoute() {
 function LoginRoute({ onLogin }) {
   const navigate = useNavigate();
   return (
-    <LoginScreen onLogin={() => { onLogin(); navigate("/dashboard"); }} />
+    <LoginScreen onLogin={(apiUser) => { onLogin(apiUser); navigate("/dashboard"); }} />
   );
 }
 
@@ -261,15 +262,64 @@ export default function App() {
   const [themeName, setTheme] = useState("dark");
   const [user, setUser] = useState(DEFAULT_USER);
 
+  /* Restore session from stored JWT on mount */
+  useEffect(() => {
+    if (!hasToken()) return;
+    getMe()
+      .then(({ user: u }) => {
+        setUser({
+          name:     u.name,
+          role:     u.role || "CEO",
+          email:    u.email,
+          company:  u.company?.name || "Minha Empresa",
+          initials: u.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase(),
+          avatar:   null,
+          phone:    "",
+          cnpj:     u.company?.cnpj || "",
+          sector:   u.company?.industry || "",
+          employees:"",
+        });
+        setLoggedIn(true);
+      })
+      .catch(() => {
+        /* Token expired or invalid — clear it */
+        apiLogout();
+      });
+  }, []);
+
+  const handleLogin = (apiUser) => {
+    if (apiUser) {
+      setUser({
+        name:     apiUser.name,
+        role:     apiUser.role || "CEO",
+        email:    apiUser.email,
+        company:  apiUser.company?.name || "Minha Empresa",
+        initials: apiUser.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase(),
+        avatar:   null,
+        phone:    "",
+        cnpj:     apiUser.company?.cnpj || "",
+        sector:   apiUser.company?.industry || "",
+        employees:"",
+      });
+    }
+    setLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    apiLogout();
+    setLoggedIn(false);
+    setUser(DEFAULT_USER);
+  };
+
   return (
     <BrowserRouter>
       <style>{GLOBAL_CSS}</style>
       <Routes>
         <Route path="/"      element={<LandingRoute />} />
-        <Route path="/login" element={<LoginRoute onLogin={() => setLoggedIn(true)} />} />
+        <Route path="/login" element={<LoginRoute onLogin={handleLogin} />} />
         <Route path="/*" element={
           loggedIn
-            ? <AppShell lang={lang} setLang={setLang} themeName={themeName} setTheme={setTheme} user={user} setUser={setUser} onLogout={() => setLoggedIn(false)} />
+            ? <AppShell lang={lang} setLang={setLang} themeName={themeName} setTheme={setTheme} user={user} setUser={setUser} onLogout={handleLogout} />
             : <Navigate to="/login" replace />
         } />
       </Routes>

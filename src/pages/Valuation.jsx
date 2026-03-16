@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useC, renderMD } from "../core/context.jsx";
+import { saveValuation } from "../services/api/valuation.js";
 import { Card } from "../components/ui/Card.jsx";
 import { Badge } from "../components/ui/Badge.jsx";
 import { SecTitle } from "../components/ui/Card.jsx";
@@ -911,6 +912,15 @@ export function PageValuation() {
 
   const handleFinish = () => {
     setPhase("results");
+    /* Persist to backend in background — fails silently if no session */
+    saveValuation({
+      industry:            answers.industry,
+      revenueRange:        answers.revenue,
+      growthRate:          answers.growth,
+      recurringRevenuePct: answers.recurring,
+      concentrationLevel:  answers.concentration,
+      companyStage:        answers.stage,
+    }).catch(() => {});
   };
 
   const handleRecalculate = () => {

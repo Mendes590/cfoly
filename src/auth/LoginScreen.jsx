@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { login as apiLogin, signup as apiSignup } from "../services/api/auth.js";
 
 /* ─── copy ─────────────────────────────────────────────────────────────────── */
 const LC = {
@@ -310,13 +311,32 @@ export function LoginScreen({ onLogin }) {
   const [email,   setEmail]   = useState("");
   const [pass,    setPass]    = useState("");
   const [loading, setLoading] = useState(false);
+  const [error,   setError]   = useState("");
+  const [isSignup, setIsSignup] = useState(false);
+  const [name,    setName]    = useState("");
   const [langKey, setLangKey] = useState("pt");
   const lc = LC[langKey];
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setError("");
     setLoading(true);
-    setTimeout(() => { setLoading(false); onLogin(); }, 1300);
+    try {
+      let data;
+      if (isSignup) {
+        data = await apiSignup({ name: name || email.split("@")[0], email, password: pass });
+      } else {
+        data = await apiLogin({ email, password: pass });
+      }
+      onLogin(data.user);
+    } catch (err) {
+      setError(err.message || "Erro ao autenticar");
+      setLoading(false);
+    }
+  }
+
+  function handleDemoAccess() {
+    onLogin(null); // enter with default mock user, no token
   }
 
   return (
@@ -461,6 +481,12 @@ export function LoginScreen({ onLogin }) {
 
             {/* Form */}
             <form onSubmit={handleSubmit} style={{ display:"flex", flexDirection:"column", gap:14 }}>
+              {isSignup && (
+                <div>
+                  <label style={{ display:"block", fontSize:10, fontWeight:700, color:"rgba(148,163,184,0.42)", marginBottom:7, letterSpacing:"0.08em", textTransform:"uppercase" }}>Nome</label>
+                  <input className="lg-input" type="text" value={name} placeholder="Seu nome completo" required onChange={e => setName(e.target.value)} />
+                </div>
+              )}
               {[
                 { key:"email", label:lc.email, type:"email",    value:email, set:setEmail, ph:lc.ph_email },
                 { key:"pass",  label:lc.pass,  type:"password", value:pass,  set:setPass,  ph:lc.ph_pass  },
@@ -471,32 +497,31 @@ export function LoginScreen({ onLogin }) {
                 </div>
               ))}
 
-              <div style={{ display:"flex", justifyContent:"flex-end", marginTop:-6 }}>
-                <button type="button" style={{ background:"none", border:"none", color:"rgba(96,165,250,0.75)", fontSize:12, cursor:"pointer", fontFamily:"inherit", padding:0, transition:"color 0.14s" }}
-                  onMouseEnter={e => (e.currentTarget.style.color="#93C5FD")}
-                  onMouseLeave={e => (e.currentTarget.style.color="rgba(96,165,250,0.75)")}
-                >{lc.forgot}</button>
-              </div>
+              {error && (
+                <div style={{ padding:"10px 13px", borderRadius:9, background:"rgba(239,68,68,0.1)", border:"1px solid rgba(239,68,68,0.25)", fontSize:12.5, color:"#F87171" }}>
+                  {error}
+                </div>
+              )}
 
               <button type="submit" className="lg-cta" disabled={loading}>
-                {loading ? lc.loading : lc.login}
+                {loading ? lc.loading : isSignup ? lc.signup : lc.login}
               </button>
             </form>
 
             {/* Demo link */}
-            <button onClick={onLogin} style={{ width:"100%", marginTop:12, background:"none", border:"none", color:"rgba(96,165,250,0.7)", fontSize:12.5, cursor:"pointer", fontFamily:"inherit", fontWeight:600, padding:"5px 0", transition:"color 0.14s", letterSpacing:"-0.01em" }}
+            <button onClick={handleDemoAccess} style={{ width:"100%", marginTop:12, background:"none", border:"none", color:"rgba(96,165,250,0.7)", fontSize:12.5, cursor:"pointer", fontFamily:"inherit", fontWeight:600, padding:"5px 0", transition:"color 0.14s", letterSpacing:"-0.01em" }}
               onMouseEnter={e => (e.currentTarget.style.color="#93C5FD")}
               onMouseLeave={e => (e.currentTarget.style.color="rgba(96,165,250,0.7)")}
             >{lc.demo}</button>
 
-            {/* Signup */}
+            {/* Signup toggle */}
             <div style={{ height:1, background:"rgba(148,163,184,0.07)", margin:"14px 0" }} />
             <div style={{ textAlign:"center", fontSize:12.5, color:"rgba(148,163,184,0.3)" }}>
-              {lc.noAccount}{" "}
-              <button onClick={onLogin} style={{ background:"none", border:"none", color:"rgba(96,165,250,0.78)", fontSize:12.5, fontWeight:700, cursor:"pointer", fontFamily:"inherit", transition:"color 0.14s" }}
+              {isSignup ? "Já tem conta? " : lc.noAccount + " "}
+              <button onClick={() => { setIsSignup(v => !v); setError(""); }} style={{ background:"none", border:"none", color:"rgba(96,165,250,0.78)", fontSize:12.5, fontWeight:700, cursor:"pointer", fontFamily:"inherit", transition:"color 0.14s" }}
                 onMouseEnter={e => (e.currentTarget.style.color="#93C5FD")}
                 onMouseLeave={e => (e.currentTarget.style.color="rgba(96,165,250,0.78)")}
-              >{lc.signup}</button>
+              >{isSignup ? "Entrar" : lc.signup}</button>
             </div>
 
             {/* Trust badge */}

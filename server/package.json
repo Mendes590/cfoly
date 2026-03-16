@@ -1,0 +1,25 @@
+{
+  "name": "cfoly-server",
+  "version": "1.0.0",
+  "description": "CFOly backend API",
+  "main": "src/index.js",
+  "scripts": {
+    "dev":          "node --watch src/index.js",
+    "start":        "node src/index.js",
+    "db:push":      "npx prisma db push",
+    "db:generate":  "npx prisma generate",
+    "db:studio":    "npx prisma studio",
+    "db:migrate":   "npx prisma migrate dev"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.10.0",
+    "bcryptjs":       "^2.4.3",
+    "cors":           "^2.8.5",
+    "dotenv":         "^16.4.5",
+    "express":        "^4.18.3",
+    "jsonwebtoken":   "^9.0.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.10.0"
+  }
+}

@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("owner")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  company      Company?
+}
+
+model Company {
+  id                  String      @id @default(uuid())
+  userId              String      @unique
+  user                User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name                String
+  cnpj                String?
+  industry            String?
+  revenueModel        String?
+  employees           String?
+  stage               String?
+  recurringRevenuePct Float?
+  concentrationLevel  String?
+  goalType            String?
+  runwayGoalDays      Int?
+  marginGoalPct       Float?
+  riskTolerance       String?
+  notes               String?
+  contextText         String?
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+  valuations          Valuation[]
+  insights            AIInsight[]
+}
+
+model Valuation {
+  id                 String   @id @default(uuid())
+  companyId          String
+  company            Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  industry           String?
+  revenueRange       String?
+  growthRate         String?
+  recurringRevenuePct String?
+  concentrationLevel String?
+  companyStage       String?
+  arrMidpoint        Float?
+  multiple           Float?
+  lowEstimate        Float?
+  midEstimate        Float?
+  highEstimate       Float?
+  confidence         String?
+  factors            String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model AIInsight {
+  id           String   @id @default(uuid())
+  companyId    String
+  company      Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  type         String
+  inputContext String?
+  outputText   String
+  createdAt    DateTime @default(now())
+}
