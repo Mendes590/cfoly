@@ -234,7 +234,7 @@ export function PageIntegrations() {
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
         <div>
           <div style={{ fontSize: 20, fontWeight: 800, color: th.text, letterSpacing: "-0.03em", marginBottom: 5 }}>Integrações</div>
-          <div style={{ fontSize: 12.5, color: th.textM }}>Conecte suas fontes de dados financeiros ao CFOly</div>
+          <div style={{ fontSize: 12.5, color: th.textM }}>Conecte suas fontes de dados financeiros ao CFOup</div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ padding: "8px 16px", borderRadius: 10, background: th.greenBg, border: `1px solid ${th.greenB}`, fontSize: 13, fontWeight: 700, color: th.green }}>

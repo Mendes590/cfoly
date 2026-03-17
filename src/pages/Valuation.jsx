@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useC, renderMD } from "../core/context.jsx";
-import { saveValuation } from "../services/api/valuation.js";
 import { Card } from "../components/ui/Card.jsx";
 import { Badge } from "../components/ui/Badge.jsx";
 import { SecTitle } from "../components/ui/Card.jsx";
 
 /* ─── Storage key ────────────────────────────────────────────────────────── */
-const STORAGE_KEY = "cfoly_valuation_v1";
+const STORAGE_KEY = "cfoup_valuation_v1";
 
 /* ─── Questions (6 total) ────────────────────────────────────────────────── */
 const QUESTIONS = {
@@ -425,7 +424,7 @@ function buildAIText(answers, qs, lang) {
 
   const lines = {
     pt: {
-      intro:      "**Análise do Valuation — CFOly AI**\n",
+      intro:      "**Análise do Valuation — CFOup AI**\n",
       industry:   (v) => `**Setor:** ${v} — um dos principais determinantes do múltiplo base.`,
       revenue:    (v) => `**ARR estimado:** ${v} — base utilizada para o cálculo multiplicativo.`,
       growth:     (v) => `**Crescimento:** ${v} — fator de forte impacto positivo em valuations de tech.`,
@@ -435,7 +434,7 @@ function buildAIText(answers, qs, lang) {
       outro:      "\n**Conclusão:** O valuation estimado combina todos esses fatores multiplicativamente sobre o ARR informado. Para aumentar o valor, priorize diversificação de clientes e aumento da receita recorrente.",
     },
     en: {
-      intro:      "**Valuation Analysis — CFOly AI**\n",
+      intro:      "**Valuation Analysis — CFOup AI**\n",
       industry:   (v) => `**Industry:** ${v} — one of the main determinants of the base multiple.`,
       revenue:    (v) => `**Estimated ARR:** ${v} — base used for the multiplicative calculation.`,
       growth:     (v) => `**Growth:** ${v} — strong positive impact factor in tech valuations.`,
@@ -445,7 +444,7 @@ function buildAIText(answers, qs, lang) {
       outro:      "\n**Conclusion:** The estimated valuation combines all these factors multiplicatively over your stated ARR. To increase value, prioritize client diversification and higher recurring revenue.",
     },
     es: {
-      intro:      "**Análisis de Valuación — CFOly AI**\n",
+      intro:      "**Análisis de Valuación — CFOup AI**\n",
       industry:   (v) => `**Sector:** ${v} — uno de los principales determinantes del múltiplo base.`,
       revenue:    (v) => `**ARR estimado:** ${v} — base utilizada para el cálculo multiplicativo.`,
       growth:     (v) => `**Crecimiento:** ${v} — factor de fuerte impacto positivo en valuaciones de tech.`,
@@ -912,15 +911,6 @@ export function PageValuation() {
 
   const handleFinish = () => {
     setPhase("results");
-    /* Persist to backend in background — fails silently if no session */
-    saveValuation({
-      industry:            answers.industry,
-      revenueRange:        answers.revenue,
-      growthRate:          answers.growth,
-      recurringRevenuePct: answers.recurring,
-      concentrationLevel:  answers.concentration,
-      companyStage:        answers.stage,
-    }).catch(() => {});
   };
 
   const handleRecalculate = () => {

@@ -194,7 +194,7 @@ function Nav({ onGetStarted, scrolled }) {
           <div style={{ width: 30, height: 30, borderRadius: 8, background: "linear-gradient(135deg,#2563EB,#1D4ED8)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 20px rgba(37,99,235,0.4)" }}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></svg>
           </div>
-          <span style={{ fontSize: 15.5, fontWeight: 800, color: "#fff", letterSpacing: "-0.04em" }}>CFOly</span>
+          <span style={{ fontSize: 15.5, fontWeight: 800, color: "#fff", letterSpacing: "-0.04em" }}>CFOup</span>
         </div>
 
         {/* Desktop nav links */}
@@ -289,7 +289,7 @@ function Hero({ onGetStarted }) {
           </h1>
 
           <p className="lfu2" style={{ fontSize: 17, color: C.textS, lineHeight: 1.7, margin: "0 0 32px", maxWidth: 440 }}>
-            CFOly connects your financial data, analyzes it with AI, and lets you ask questions in plain language — so you make decisions with real confidence.
+            CFOup connects your financial data, analyzes it with AI, and lets you ask questions in plain language — so you make decisions with real confidence.
           </p>
 
           <div className="lfu3" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -342,9 +342,9 @@ function LogosBar() {
    HOW IT WORKS
    ════════════════════════════════════════════════════════ */
 const STEPS = [
-  { n: "01", color: C.blue,  title: "Connect your data",                       desc: "Import data from Excel, your ERP, Stripe, or any database. CFOly unifies your financial picture in minutes.",          icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> },
-  { n: "02", color: C.cyan,  title: "Add business context",                     desc: "Tell CFOly about your team, goals, and growth stage. The AI uses this to give you context-aware answers.",           icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> },
-  { n: "03", color: C.blueL, title: "Ask anything or get proactive insights",   desc: "Ask \"Can I hire?\" or \"How's my runway?\" or let CFOly surface alerts before you even ask.",                  icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
+  { n: "01", color: C.blue,  title: "Connect your data",                       desc: "Import data from Excel, your ERP, Stripe, or any database. CFOup unifies your financial picture in minutes.",          icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> },
+  { n: "02", color: C.cyan,  title: "Add business context",                     desc: "Tell CFOup about your team, goals, and growth stage. The AI uses this to give you context-aware answers.",           icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> },
+  { n: "03", color: C.blueL, title: "Ask anything or get proactive insights",   desc: "Ask \"Can I hire?\" or \"How's my runway?\" or let CFOup surface alerts before you even ask.",                  icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
   { n: "04", color: C.green, title: "Decide with confidence",                   desc: "Get AI recommendations backed by your real data. No guessing. No spreadsheet gymnastics. Just decisions.",           icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg> },
 ];
 
@@ -358,7 +358,7 @@ function HowItWorks() {
             From raw data to<br />clear decisions
           </h2>
           <p style={{ fontSize: 16, color: C.textS, maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
-            CFOly connects your financial data and helps you make sense of it with AI.
+            CFOup connects your financial data and helps you make sense of it with AI.
           </p>
         </div>
 
@@ -404,7 +404,7 @@ function AIChatSection() {
               Ask your<br />financial data<br />anything
             </h2>
             <p style={{ fontSize: 15.5, color: C.textS, lineHeight: 1.7, margin: "0 0 28px", maxWidth: 360 }}>
-              CFOly understands your full financial context and responds like a senior CFO — with data-backed answers you can act on right now.
+              CFOup understands your full financial context and responds like a senior CFO — with data-backed answers you can act on right now.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {CHAT_CONVOS.map((c, i) => (
@@ -424,7 +424,7 @@ function AIChatSection() {
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={C.blueL} strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 13.5, fontWeight: 700, color: C.text }}>CFOly AI</div>
+                <div style={{ fontSize: 13.5, fontWeight: 700, color: C.text }}>CFOup AI</div>
                 <div style={{ fontSize: 10.5, color: C.green, fontWeight: 600, display: "flex", alignItems: "center", gap: 5 }}>
                   <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.green, display: "inline-block", animation: "lPulse 2s infinite" }} /> Online · analyzing your data
                 </div>
@@ -445,7 +445,7 @@ function AIChatSection() {
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={C.blueL} strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
                 </div>
                 <div style={{ background: "rgba(148,163,184,0.06)", border: `1px solid ${C.border}`, borderRadius: "4px 14px 14px 14px", padding: "13px 16px", flex: 1 }}>
-                  <div style={{ fontSize: 10.5, fontWeight: 700, color: C.blueL, marginBottom: 8 }}>CFOly AI · {CHAT_CONVOS[active].tag}</div>
+                  <div style={{ fontSize: 10.5, fontWeight: 700, color: C.blueL, marginBottom: 8 }}>CFOup AI · {CHAT_CONVOS[active].tag}</div>
                   <span style={{ fontSize: 13.5, color: C.text, lineHeight: 1.65 }}>{CHAT_CONVOS[active].a}</span>
                 </div>
               </div>
@@ -473,8 +473,8 @@ const FEATURES = [
   { color: C.cyan,  title: "AI analysis on every chart",        desc: "Click Analyze with AI on any chart to get an instant explanation of what happened and what to do.",              icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="8"/><path d="M11 8v3l2 2"/></svg> },
   { color: C.amber, title: "Customer concentration risk",        desc: "Identify over-reliance on single clients before it becomes a business threat. Get early warnings.",             icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
   { color: C.green, title: "Cashflow & runway forecasting",      desc: "Pessimistic, projected, and optimistic scenarios so you always know where you stand before you need to.",      icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg> },
-  { color: C.blueL, title: "Business context-aware AI",          desc: "CFOly learns your team size, goals, and growth stage to give advice that actually fits your situation.",       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> },
-  { color: C.red,   title: "Proactive financial alerts",          desc: "Don't wait to discover problems. CFOly surfaces anomalies, risks, and opportunities automatically.",           icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> },
+  { color: C.blueL, title: "Business context-aware AI",          desc: "CFOup learns your team size, goals, and growth stage to give advice that actually fits your situation.",       icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> },
+  { color: C.red,   title: "Proactive financial alerts",          desc: "Don't wait to discover problems. CFOup surfaces anomalies, risks, and opportunities automatically.",           icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> },
 ];
 
 function Features() {
@@ -508,7 +508,7 @@ function Features() {
    BENEFITS
    ════════════════════════════════════════════════════════ */
 const BENEFITS = [
-  { icon: "💡", title: "No finance degree required",     desc: "Ask questions in plain language. CFOly translates raw numbers into clear, actionable language." },
+  { icon: "💡", title: "No finance degree required",     desc: "Ask questions in plain language. CFOup translates raw numbers into clear, actionable language." },
   { icon: "⚡", title: "AI insights in seconds",         desc: "Stop spending hours in spreadsheets. Get CFO-level analysis in the time it takes to ask a question." },
   { icon: "🧭", title: "Decisions backed by real data",  desc: "Every recommendation is grounded in your actual financial data — not templates or generic benchmarks." },
 ];
@@ -518,12 +518,12 @@ function Benefits() {
     <div>
       <div className="secPad" style={{ maxWidth: W, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 52 }}>
-          <Pill label="Why CFOly" />
+          <Pill label="Why CFOup" />
           <h2 className="secH2" style={{ fontWeight: 800, letterSpacing: "-0.03em", color: C.text, margin: "14px 0 12px" }}>
             Financial clarity<br />without the overhead
           </h2>
           <p style={{ fontSize: 16, color: C.textS, maxWidth: 460, margin: "0 auto", lineHeight: 1.7 }}>
-            CFOly gives growing businesses access to the kind of financial intelligence that used to require a full CFO team.
+            CFOup gives growing businesses access to the kind of financial intelligence that used to require a full CFO team.
           </p>
         </div>
         <div className="benGrid">
@@ -546,7 +546,7 @@ function Benefits() {
    ════════════════════════════════════════════════════════ */
 const TRUST = [
   { color: C.green, title: "Encrypted in transit and at rest", desc: "All data is encrypted using AES-256, both in transit and at rest. Your financial information is protected at every layer.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> },
-  { color: C.blueL, title: "Reliable cloud infrastructure",    desc: "CFOly is built on scalable cloud infrastructure designed for availability. Your data is backed up and always accessible.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
+  { color: C.blueL, title: "Reliable cloud infrastructure",    desc: "CFOup is built on scalable cloud infrastructure designed for availability. Your data is backed up and always accessible.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
   { color: C.cyan,  title: "Privacy-first by design",          desc: "Your financial data is processed solely to generate your insights. It is never sold or shared with third parties.", icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> },
 ];
 
@@ -560,7 +560,7 @@ function Trust() {
             Built for sensitive data
           </h2>
           <p style={{ fontSize: 16, color: C.textS, maxWidth: 440, margin: "0 auto", lineHeight: 1.7 }}>
-            Your financial data is sensitive. CFOly is built with that in mind from the ground up.
+            Your financial data is sensitive. CFOup is built with that in mind from the ground up.
           </p>
         </div>
         <div className="trustGrid">
@@ -596,7 +596,7 @@ function Integrations() {
           Works with your existing tools
         </h2>
         <p style={{ fontSize: 16, color: C.textS, maxWidth: 440, margin: "0 auto 44px", lineHeight: 1.7 }}>
-          Import from the tools you already use. CFOly consolidates everything in one place.
+          Import from the tools you already use. CFOup consolidates everything in one place.
         </p>
         <div className="intGrid">
           {INTS.map(i => (
@@ -627,7 +627,7 @@ function FinalCTA({ onGetStarted }) {
           <span style={{ background: `linear-gradient(130deg,${C.blue},${C.blueL},${C.cyan})`, backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Start deciding.</span>
         </h2>
         <p style={{ fontSize: 17, color: C.textS, maxWidth: 460, margin: "0 auto 40px", lineHeight: 1.7 }}>
-          CFOly gives you a clear view of your financial performance and lets AI surface what matters most.
+          CFOup gives you a clear view of your financial performance and lets AI surface what matters most.
         </p>
         <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
           <button onClick={onGetStarted} className="lBtnP" style={{ padding: "15px 44px", borderRadius: 12, border: "none", background: C.blue, color: "#fff", fontSize: 16, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", boxShadow: "0 8px 40px rgba(37,99,235,0.45)" }}>
@@ -650,9 +650,9 @@ function Footer() {
           <div style={{ width: 26, height: 26, borderRadius: 7, background: "linear-gradient(135deg,#2563EB,#1D4ED8)", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /></svg>
           </div>
-          <span style={{ fontSize: 14, fontWeight: 800, color: C.text, letterSpacing: "-0.03em" }}>CFOly</span>
+          <span style={{ fontSize: 14, fontWeight: 800, color: C.text, letterSpacing: "-0.03em" }}>CFOup</span>
         </div>
-        <div style={{ fontSize: 12, color: C.textM }}>© 2026 CFOly. Financial intelligence for modern businesses.</div>
+        <div style={{ fontSize: 12, color: C.textM }}>© 2026 CFOup. Financial intelligence for modern businesses.</div>
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
           {["Privacy", "Terms", "Security", "Docs"].map(l => (
             <span key={l} className="lLink" style={{ fontSize: 12.5, color: C.textS }}>{l}</span>

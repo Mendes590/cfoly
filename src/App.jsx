@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { getMe, logout as apiLogout, hasToken } from "./services/api/auth.js";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
 import { Ctx, NAV } from "./core/context.jsx";
 import { THEMES } from "./core/themes.js";
@@ -23,17 +22,17 @@ import { OnboardingModal } from "./panels/OnboardingModal.jsx";
 
 /* ─── Route ↔ page-id maps ─── */
 const PATH_TO_PAGE = {
-  "/dashboard":       "dashboard",
-  "/cashflow":        "cashflow",
-  "/revenue":         "revenue",
-  "/expenses":        "expenses",
-  "/customers":       "customers",
-  "/insights":        "insights",
-  "/valuation":       "valuation",
-  "/report":          "report",
-  "/business-context":"context",
-  "/integrations":    "integrations",
-  "/settings":        "settings",
+  "/app/dashboard":        "dashboard",
+  "/app/cashflow":         "cashflow",
+  "/app/revenue":          "revenue",
+  "/app/expenses":         "expenses",
+  "/app/customers":        "customers",
+  "/app/insights":         "insights",
+  "/app/valuation":        "valuation",
+  "/app/report":           "report",
+  "/app/business-context": "context",
+  "/app/integrations":     "integrations",
+  "/app/settings":         "settings",
 };
 
 const PAGE_TO_PATH = Object.fromEntries(
@@ -95,8 +94,8 @@ function AppShell({ lang, setLang, themeName, setTheme, user, setUser, onLogout 
   const [showNotif, setShowNotif] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(() => {
-    const skip = localStorage.getItem("cfoly_skip_onboarding") === "true";
-    const filled = localStorage.getItem("cfoly_ctx_filled") === "true";
+    const skip = localStorage.getItem("cfoup_skip_onboarding") === "true";
+    const filled = localStorage.getItem("cfoup_ctx_filled") === "true";
     return !skip && !filled;
   });
 
@@ -104,7 +103,7 @@ function AppShell({ lang, setLang, themeName, setTheme, user, setUser, onLogout 
   const t = TR[lang];
 
   const page = PATH_TO_PAGE[location.pathname] || "dashboard";
-  const setPage = (id) => navigate(PAGE_TO_PATH[id] || "/dashboard");
+  const setPage = (id) => navigate(PAGE_TO_PATH[id] || "/app/dashboard");
 
   const ctx = { th, t, lang, setLang, themeName, setTheme, user, setUser, page, setPage };
 
@@ -132,7 +131,7 @@ function AppShell({ lang, setLang, themeName, setTheme, user, setUser, onLogout 
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></svg>
                 </div>
                 <div style={{ minWidth: 0 }}>
-                  <div style={{ fontSize: 14, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", whiteSpace: "nowrap" }}>CFOly</div>
+                  <div style={{ fontSize: 14, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", whiteSpace: "nowrap" }}>CFOup</div>
                   <div style={{ fontSize: 9, color: "rgba(148,163,184,0.4)", fontWeight: 600, letterSpacing: "0.06em", whiteSpace: "nowrap" }}>{t.tagline}</div>
                 </div>
               </div>
@@ -204,19 +203,19 @@ function AppShell({ lang, setLang, themeName, setTheme, user, setUser, onLogout 
           {/* Page content */}
           <div style={{ flex: 1, overflowY: "auto", padding: "22px 24px", scrollbarWidth: "thin" }}>
             <Routes>
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
-              <Route path="/dashboard"        element={<PageDashboard />} />
-              <Route path="/cashflow"         element={<PageCashFlow />} />
-              <Route path="/revenue"          element={<PageRevenue />} />
-              <Route path="/expenses"         element={<PageExpenses />} />
-              <Route path="/customers"        element={<PageCustomers />} />
-              <Route path="/insights"         element={<PageInsights />} />
-              <Route path="/valuation"        element={<PageValuation />} />
-              <Route path="/report"           element={<PageReport />} />
-              <Route path="/business-context" element={<PageContext />} />
-              <Route path="/integrations"     element={<PageIntegrations />} />
-              <Route path="/settings"         element={<PageSettings />} />
-              <Route path="*"                 element={<Navigate to="/dashboard" replace />} />
+              <Route path="/app"                   element={<Navigate to="/app/dashboard" replace />} />
+              <Route path="/app/dashboard"         element={<PageDashboard />} />
+              <Route path="/app/cashflow"          element={<PageCashFlow />} />
+              <Route path="/app/revenue"           element={<PageRevenue />} />
+              <Route path="/app/expenses"          element={<PageExpenses />} />
+              <Route path="/app/customers"         element={<PageCustomers />} />
+              <Route path="/app/insights"          element={<PageInsights />} />
+              <Route path="/app/valuation"         element={<PageValuation />} />
+              <Route path="/app/report"            element={<PageReport />} />
+              <Route path="/app/business-context"  element={<PageContext />} />
+              <Route path="/app/integrations"      element={<PageIntegrations />} />
+              <Route path="/app/settings"          element={<PageSettings />} />
+              <Route path="*"                      element={<Navigate to="/app/dashboard" replace />} />
             </Routes>
           </div>
         </div>
@@ -251,7 +250,7 @@ function LandingRoute() {
 function LoginRoute({ onLogin }) {
   const navigate = useNavigate();
   return (
-    <LoginScreen onLogin={(apiUser) => { onLogin(apiUser); navigate("/dashboard"); }} />
+    <LoginScreen onLogin={() => { onLogin(); navigate("/app/dashboard"); }} />
   );
 }
 
@@ -262,66 +261,27 @@ export default function App() {
   const [themeName, setTheme] = useState("dark");
   const [user, setUser] = useState(DEFAULT_USER);
 
-  /* Restore session from stored JWT on mount */
-  useEffect(() => {
-    if (!hasToken()) return;
-    getMe()
-      .then(({ user: u }) => {
-        setUser({
-          name:     u.name,
-          role:     u.role || "CEO",
-          email:    u.email,
-          company:  u.company?.name || "Minha Empresa",
-          initials: u.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase(),
-          avatar:   null,
-          phone:    "",
-          cnpj:     u.company?.cnpj || "",
-          sector:   u.company?.industry || "",
-          employees:"",
-        });
-        setLoggedIn(true);
-      })
-      .catch(() => {
-        /* Token expired or invalid — clear it */
-        apiLogout();
-      });
-  }, []);
-
-  const handleLogin = (apiUser) => {
-    if (apiUser) {
-      setUser({
-        name:     apiUser.name,
-        role:     apiUser.role || "CEO",
-        email:    apiUser.email,
-        company:  apiUser.company?.name || "Minha Empresa",
-        initials: apiUser.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase(),
-        avatar:   null,
-        phone:    "",
-        cnpj:     apiUser.company?.cnpj || "",
-        sector:   apiUser.company?.industry || "",
-        employees:"",
-      });
-    }
+  const handleLogin = () => {
     setLoggedIn(true);
   };
 
   const handleLogout = () => {
-    apiLogout();
     setLoggedIn(false);
     setUser(DEFAULT_USER);
   };
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/cfoup">
       <style>{GLOBAL_CSS}</style>
       <Routes>
         <Route path="/"      element={<LandingRoute />} />
         <Route path="/login" element={<LoginRoute onLogin={handleLogin} />} />
-        <Route path="/*" element={
+        <Route path="/app/*" element={
           loggedIn
             ? <AppShell lang={lang} setLang={setLang} themeName={themeName} setTheme={setTheme} user={user} setUser={setUser} onLogout={handleLogout} />
             : <Navigate to="/login" replace />
         } />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

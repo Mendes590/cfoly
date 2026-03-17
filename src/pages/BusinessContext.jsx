@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useC } from "../core/context.jsx";
 import { Card } from "../components/ui/Card.jsx";
-import { saveBusinessProfile } from "../services/api/businessProfile.js";
 
 // ─── Audio mode ───────────────────────────────────────────────────────────────
 function AudioMode({ th }) {
@@ -107,10 +106,9 @@ function AudioMode({ th }) {
               Regravar
             </button>
             <button onClick={() => {
-              localStorage.setItem("cfoly_ctx_filled", "true");
+              localStorage.setItem("cfoup_ctx_filled", "true");
               setSaved(true);
               setTimeout(() => setSaved(false), 2500);
-              saveBusinessProfile({ contextText: transcript }).catch(() => {});
             }}
               style={{ padding: "9px 22px", borderRadius: 10, border: saved ? `1px solid ${th.greenB}` : "none", background: saved ? th.greenBg : "linear-gradient(135deg,#4f46e5,#2563eb)", color: saved ? th.green : "#fff", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: saved ? "none" : "0 3px 12px rgba(79,70,229,0.35)" }}>
               {saved ? "✓ Salvo!" : "Salvar Contexto"}
@@ -180,7 +178,7 @@ function TextMode({ th }) {
 
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <button
-          onClick={() => { if (text.trim()) { localStorage.setItem("cfoly_ctx_filled", "true"); setSaved(true); setTimeout(() => setSaved(false), 2500); saveBusinessProfile({ contextText: text }).catch(() => {}); } }}
+          onClick={() => { if (text.trim()) { localStorage.setItem("cfoup_ctx_filled", "true"); setSaved(true); setTimeout(() => setSaved(false), 2500); } }}
           style={{ padding: "11px 28px", borderRadius: 11, border: saved ? `1px solid ${th.greenB}` : "none", background: saved ? th.greenBg : text.trim() ? "linear-gradient(135deg,#4f46e5,#2563eb)" : th.bgSection, color: saved ? th.green : text.trim() ? "#fff" : th.textM, fontSize: 13, fontWeight: 700, cursor: text.trim() ? "pointer" : "default", fontFamily: "inherit", transition: "all 0.2s", boxShadow: saved || !text.trim() ? "none" : "0 3px 12px rgba(79,70,229,0.35)" }}
         >{saved ? "✓ Contexto Salvo!" : "Salvar Contexto"}</button>
       </div>
@@ -354,17 +352,9 @@ function GuidedMode({ th }) {
             style={{ padding: "11px 22px", borderRadius: 11, border: "none", background: "linear-gradient(135deg,#4f46e5,#2563eb)", color: "#fff", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", boxShadow: "0 3px 12px rgba(79,70,229,0.35)" }}>Próximo →</button>
         ) : (
           <button onClick={() => {
-            localStorage.setItem("cfoly_ctx_filled", "true");
+            localStorage.setItem("cfoup_ctx_filled", "true");
             setSaved(true);
             setTimeout(() => setSaved(false), 2500);
-            saveBusinessProfile({
-              industry:        ctx.industry,
-              revenueModel:    ctx.model,
-              concentrationLevel: ctx.concentrated,
-              goalType:        ctx.goal,
-              riskTolerance:   ctx.risk_tolerance,
-              notes:           ctx.notes,
-            }).catch(() => {});
           }}
             style={{ padding: "11px 22px", borderRadius: 11, border: saved ? `1px solid ${th.greenB}` : "none", background: saved ? th.greenBg : "linear-gradient(135deg,#4f46e5,#2563eb)", color: saved ? th.green : "#fff", fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s", boxShadow: saved ? "none" : "0 3px 12px rgba(79,70,229,0.35)" }}>
             {saved ? "✓ Contexto Salvo!" : "Salvar Contexto"}

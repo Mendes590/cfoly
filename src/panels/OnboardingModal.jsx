@@ -6,7 +6,7 @@ export function OnboardingModal({ onClose, onGoToContext }) {
   const [skipForever, setSkipForever] = useState(false);
 
   const handleClose = () => {
-    if (skipForever) localStorage.setItem("cfoly_skip_onboarding", "true");
+    if (skipForever) localStorage.setItem("cfoup_skip_onboarding", "true");
     onClose();
   };
 

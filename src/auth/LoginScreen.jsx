@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { login as apiLogin, signup as apiSignup } from "../services/api/auth.js";
 
 /* ─── copy ─────────────────────────────────────────────────────────────────── */
 const LC = {
@@ -308,31 +307,16 @@ function LockIcon() {
 
 /* ─── Main component ─────────────────────────────────────────────────────── */
 export function LoginScreen({ onLogin }) {
-  const [email,   setEmail]   = useState("");
-  const [pass,    setPass]    = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error,   setError]   = useState("");
+  const [email,    setEmail]    = useState("");
+  const [pass,     setPass]     = useState("");
   const [isSignup, setIsSignup] = useState(false);
-  const [name,    setName]    = useState("");
-  const [langKey, setLangKey] = useState("pt");
+  const [name,     setName]     = useState("");
+  const [langKey,  setLangKey]  = useState("pt");
   const lc = LC[langKey];
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    setError("");
-    setLoading(true);
-    try {
-      let data;
-      if (isSignup) {
-        data = await apiSignup({ name: name || email.split("@")[0], email, password: pass });
-      } else {
-        data = await apiLogin({ email, password: pass });
-      }
-      onLogin(data.user);
-    } catch (err) {
-      setError(err.message || "Erro ao autenticar");
-      setLoading(false);
-    }
+    onLogin();
   }
 
   function handleDemoAccess() {
@@ -362,7 +346,7 @@ export function LoginScreen({ onLogin }) {
                 <polyline points="16 7 22 7 22 13" />
               </svg>
             </div>
-            <span style={{ fontSize:17, fontWeight:800, color:"#fff", letterSpacing:"-0.03em" }}>CFOly</span>
+            <span style={{ fontSize:17, fontWeight:800, color:"#fff", letterSpacing:"-0.03em" }}>CFOup</span>
             <div style={{ padding:"2px 9px", borderRadius:20, background:"rgba(37,99,235,0.14)", border:"1px solid rgba(37,99,235,0.26)", fontSize:9, fontWeight:800, color:"#60A5FA", letterSpacing:"0.09em" }}>BETA</div>
           </div>
 
@@ -497,14 +481,8 @@ export function LoginScreen({ onLogin }) {
                 </div>
               ))}
 
-              {error && (
-                <div style={{ padding:"10px 13px", borderRadius:9, background:"rgba(239,68,68,0.1)", border:"1px solid rgba(239,68,68,0.25)", fontSize:12.5, color:"#F87171" }}>
-                  {error}
-                </div>
-              )}
-
-              <button type="submit" className="lg-cta" disabled={loading}>
-                {loading ? lc.loading : isSignup ? lc.signup : lc.login}
+              <button type="submit" className="lg-cta">
+                {isSignup ? lc.signup : lc.login}
               </button>
             </form>
 

@@ -65,7 +65,7 @@ export function PageSettings() {
       {/* Header */}
       <div style={{ marginBottom: 4 }}>
         <div style={{ fontSize: 20, fontWeight: 800, color: th.text, letterSpacing: "-0.03em", marginBottom: 5 }}>{t.settTitle}</div>
-        <div style={{ fontSize: 12.5, color: th.textM }}>Personalize sua experiência no CFOly</div>
+        <div style={{ fontSize: 12.5, color: th.textM }}>Personalize sua experiência no CFOup</div>
       </div>
 
       {/* Appearance */}
@@ -145,7 +145,7 @@ export function PageSettings() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", borderRadius: 12, background: "linear-gradient(135deg,rgba(99,102,241,0.12),rgba(37,99,235,0.08))", border: `1px solid ${th.borderA}`, marginBottom: 4 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 4 }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: th.text }}>CFOly Pro</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: th.text }}>CFOup Pro</div>
               <Badge color="accent">Ativo</Badge>
             </div>
             <div style={{ fontSize: 12, color: th.textM }}>Renovação em 14 de abril de 2025 · $49/mês</div>

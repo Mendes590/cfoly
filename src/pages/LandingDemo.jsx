@@ -1,5 +1,5 @@
 /**
- * LandingDemo.jsx — Scaled live preview of the real CFOly app inside the
+ * LandingDemo.jsx — Scaled live preview of the real CFOup app inside the
  * landing-page MacBook frame.
  *
  * KEY STABILITY GUARANTEE:
@@ -193,7 +193,7 @@ function DemoAIPanel({ analysisKey, onClose }) {
                   <div style={{ width: 16, height: 16, borderRadius: 4, background: "linear-gradient(135deg,#4f46e5,#2563eb)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                   </div>
-                  <span style={{ fontSize: 10, fontWeight: 700, color: th.accentL }}>CFOly AI</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: th.accentL }}>CFOup AI</span>
                 </div>
                 <div style={{ padding: "10px 12px", background: th.chatAI, border: `1px solid ${th.chatAIB}`, borderRadius: "3px 12px 12px 12px", fontSize: 12, color: th.textS, lineHeight: 1.7 }}>
                   {renderMD(m.text)}
@@ -273,7 +273,7 @@ function DemoShell({ page, setPage }) {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></svg>
             </div>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em" }}>CFOly</div>
+              <div style={{ fontSize: 14, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em" }}>CFOup</div>
               <div style={{ fontSize: 9, color: "rgba(148,163,184,0.4)", fontWeight: 600, letterSpacing: "0.06em" }}>{t.tagline}</div>
             </div>
           </div>
